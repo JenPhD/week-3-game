@@ -2,3 +2,34 @@
   box-sizing: border-box;
 }
 
+.jumbotron .container {
+	padding: 30 px;
+}
+
+.jumbotron {
+	background-color: blue;
+	color: white;
+}
+
+.row {
+	background-color: red;
+	color: white;
+}
+
+.photo {
+	margin: 20px 0;
+}
+
+.footer {
+	background-color: blue;
+	border-top: solid;
+	border-color: black;
+	color: white;
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	text-align: center;
+}
+
+
+
