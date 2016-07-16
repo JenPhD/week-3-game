@@ -1,4 +1,15 @@
-var presidents = [
+
+// Initialize property values for hangmanGame
+
+var hangmanGame = {
+    userGuess: "",
+    word: "",
+    wrongAllowed: 7,
+  	goodLetters: 0,
+  	wordArray: [],
+  	badArray: [], 
+  	wins: 0,
+  	presidents: [
   "WASHINGTON",
   "ADAMS", 
   "JEFFERSON",
@@ -38,77 +49,71 @@ var presidents = [
   "BUSH",
   "CLINTON",
   "OBAMA"
-];
+],
 
-  
-  var word = presidents[Math.floor(Math.random() * presidents.length)];
-  console.log(word);
+//Is there a win?
+winCheck:function {
+	if (this.goodLetters=this.lastIndexOf())
 
-//Game begins. Game runs as long as the # of wrongAllowed is greater than 0
-//and as long the number of goodLetters is less than the length of the word.
+},
 
-//variables
-var game = { 
-  wrongAllowed: 7,
-  goodLetters: 0,
-  wordArray: [],
-  badArray: [], 
-  wins: 0,
-  
-//functions
+//Start with picking a random president.
+	pickWord: function(){
+	this.word = hangmanGame.presidents[Math.floor(Math.random() * hangmanGame.presidents.length)];
+	console.log(this.word);
+	},
 
-//while (wrongAllowed > 0 && goodLetters < word.length) Do I need this?
- 
-  
-  //Writing the number of dashes based on word length.
-  for (var i = 0; i < word.length; i++) {
-    wordArray[i] = "_";
-  }
+//Draw underscores for the length of the word.
 
-//Recording the keypress and then sets it to userguess.
-    document.onkeyup = function(event) {
-    var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
+	drawSpaces: function () {
+		var i;
+		for (var i = 0; i < hangmanGame.word.length; i++) {
+     		this.wordArray[i] = "_"};
+     	console.log(this.wordArray);
+     	},
 
-//First make sure key pressed has not already been guessed. Not sure this needs to be here.
-//if ((guessesMade.indexOf(userGuess>-1)) || (goodLetters.indexOf(userGuess>-1))) {
-   // alert("You already guessed that letter!")
 
-//If the guess is in the bad array or if it is in the good array, do nothing other than alert the user they have already guessed it.
-  //if ((guessesMade.indexOf(userGuess>-1)) || (goodLetters.indexOf(userGuess>-1))) {
-   // alert("You already guessed that letter!")
-  //}
-
-//Check to see if userGuess is in the word.
-      var indexLetter = word.indexOf("userGuess");
-      if(indexLetter == -1)
-      {
-        alert: "Try again!";
-        wrongAllowed--;
-        badArray.push("userGuess");
-      }
-      else (indexLetter > -1)
-      {
-        wordArray.splice(indexLetter, 1, "userguess");
-        goodLetters++
-      }
-    }
-}
-   console.log(wordArray);
-   console.log(badArray);
-
- // Taking the tallies and displaying them in HTML
-   var html = "<p>Press a letter key to guess a letter in the current puzzle and begin the game</p>" +
-   "<p>Wins: " + wins + 
-   "</p>" +
-   "<p>word:_ _ _ _ _ " //number of dashes should be the number of letters in the length of the string of the word. Replace dashes with correct letters guessed.
-    "</p>" +
-    "<p>Number of guesses remaining: " + 
-    //guessesRemain 
-    "</p>";
-
-    //"<p>Letters already guessed: " + userGuess //-correct guesses in the puzzle.
    
-  // Placing the html into the game ID
-    document.querySelector('#letters').innerHTML = html;
-}
-//}
+//Update gamestats for hangmanGame
+    //showGuess: function(keyPressed) {
+    //alert(keyPressed);
+    //this.userGuess++;
+    //console.log(this.userGuess);
+    
+//Check userGuess to see if it is in the word.
+	
+	checkLetter: function() {
+	var indexLetter = this.word.indexOf("this.userGuess");
+	if(indexLetter == -1) {
+       alert: "Try again!";
+       this.wrongAllowed--;
+       console.log(this.wrongAllowed);
+       this.badArray.push("this.userGuess");
+       console.log(this.badArray);
+   		}
+
+   	else if(indexLetter > -1) {
+   		alert: "Yay, you got a letter!"
+   		this.wordArray.splice(indexLetter, 1, "this.userGuess");
+   		//console.log(this.wordArray);
+   		this.goodLetters++;
+   		//console.log(this.goodLetters);
+   		}
+	}
+  }
+//game setup and procedures
+	hangmanGame.pickWord(); 
+
+//UserGuess letter
+document.onkeyup = function(event) {
+		var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
+		console.log(userGuess);
+	}
+	hangmanGame.drawSpaces();
+
+	hangmanGame.checkLetter();
+
+
+
+
+
