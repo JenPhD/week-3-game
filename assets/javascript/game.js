@@ -9,6 +9,7 @@ var hangmanGame = {
   	wordArray: [],
   	badArray: [], 
   	wins: 0,
+  	losses:0,
   	presidents: [
   "WASHINGTON",
   "ADAMS", 
@@ -51,34 +52,38 @@ var hangmanGame = {
   "OBAMA"
 ],
 
-//Is there a win?
-winCheck:function {
-	if (this.goodLetters=this.lastIndexOf())
-
-},
-
 //Start with picking a random president.
 	pickWord: function(){
-	this.word = hangmanGame.presidents[Math.floor(Math.random() * hangmanGame.presidents.length)];
-	console.log(this.word);
-	},
+		this.word = hangmanGame.presidents[Math.floor(Math.random() * hangmanGame.presidents.length)];
+		console.log(this.word);
+		},
 
+//Is there a win?
+	//winCheck: function {
+		//if ((this.word.length = goodLetters) && (wrongAllowed > 0)){
+		//alert("You win!");
+		//wins++;
+		//document.getElementById("wins").innerHTML = "Wins: " + wins;
+		//hangmanGame.resetGame();
+	//}
+//},
+
+//Reset game.
+	//resetGame: function {
+		
+
+	//}
+
+//Update the word if there is a goodLetter, win, or a loss. 
 //Draw underscores for the length of the word.
-
 	drawSpaces: function () {
 		var i;
 		for (var i = 0; i < hangmanGame.word.length; i++) {
      		this.wordArray[i] = "_"};
      	console.log(this.wordArray);
+     	document.getElementById("word").innerHTML = "Word: " + this.wordArray;
      	},
 
-
-   
-//Update gamestats for hangmanGame
-    //showGuess: function(keyPressed) {
-    //alert(keyPressed);
-    //this.userGuess++;
-    //console.log(this.userGuess);
     
 //Check userGuess to see if it is in the word.
 	
@@ -104,11 +109,14 @@ winCheck:function {
 //game setup and procedures
 	hangmanGame.pickWord(); 
 
+	//hangmanGame.winCheck();
+
 //UserGuess letter
-document.onkeyup = function(event) {
+	document.onkeyup = function(event) {
 		var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
 		console.log(userGuess);
 	}
+
 	hangmanGame.drawSpaces();
 
 	hangmanGame.checkLetter();
